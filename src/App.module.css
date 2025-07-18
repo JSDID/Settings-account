@@ -1,0 +1,11 @@
+.app {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f8fafd;
+}
+
+.app__header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 32px 48px 0 0;
+} 

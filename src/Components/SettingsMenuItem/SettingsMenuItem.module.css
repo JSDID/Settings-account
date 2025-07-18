@@ -1,0 +1,10 @@
+.settings-menu-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 16px;
+}
+
+.settings-menu-item:hover {
+  background: #f0f4fa;
+} 

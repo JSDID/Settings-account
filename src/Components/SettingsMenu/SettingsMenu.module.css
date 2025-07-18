@@ -1,0 +1,16 @@
+.settings-menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  min-width: 200px;
+  z-index: 100;
+}
+
+.settings-menu__list {
+  padding: 8px 0;
+  margin: 0;
+  list-style: none;
+} 
