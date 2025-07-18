@@ -1,69 +1,94 @@
-# React + TypeScript + Vite
+# UserMenu Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
 
-Currently, two official plugins are available:
+`UserMenu` — это выпадающее меню пользователя, которое отображает список пунктов меню (например, "Мой профиль", "Настройки", "Выйти" и т.д.). Для отображения пунктов используется компонент `SettingsMenu`, а каждый пункт реализован через `SettingsMenuItem`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Структура компонентов
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```mermaid
+graph TD
+  UserMenu --> SettingsMenu
+  SettingsMenu --> SettingsMenuItem
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Использование
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```tsx
+import { UserMenu } from './Components/UserMenu/UserMenu';
+
+function App() {
+  return (
+    <div>
+      <UserMenu />
+    </div>
+  );
+}
+```
+
+---
+
+## Пропсы
+
+### UserMenu
+
+- Не принимает пропсы.
+
+### SettingsMenu
+
+- `items: SettingsMenuItemProps[]` — массив объектов с описанием пунктов меню.
+
+### SettingsMenuItemProps
+
+```ts
+interface SettingsMenuItemProps {
+  label: string;         // Текст пункта меню
+  onClick?: () => void;  // (опционально) обработчик клика
+}
+```
+
+---
+
+## Массив пунктов меню
+
+```ts
+const menuItems: SettingsMenuItemProps[] = [
+  { label: 'My Profile' },
+  { label: 'General Settings' },
+  { label: 'Change Location' },
+  { label: 'Users' },
+  { label: 'Contact support' },
+  { label: 'Support history' },
+  { label: 'Help' },
+  { label: 'Logout' },
+];
+```
+
+---
+
+## Стилизация
+
+Все компоненты используют CSS-модули и именование классов по методологии BEM.
+---
+
+## Особенности
+
+- Меню автоматически закрывается при клике вне его области.
+- Иконка пользователя реализована через SVG.
+
+---
+
+## Пример кастомизации
+
+Чтобы добавить обработчик на пункт меню:
+
+```ts
+const menuItems: SettingsMenuItemProps[] = [
+  { label: 'Logout', onClick: () => { /* логика */ } },
+  // остальные пункты...
+];
 ```
