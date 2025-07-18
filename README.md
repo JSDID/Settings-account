@@ -1,4 +1,4 @@
-# UserMenu Component
+# UserMenu component
 
 ## Описание
 
